@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>My Shop</title>
+	</head>
+	<body>
+		<fieldset>
+		<center><h2>CART</h2></center></fieldset>
+		<fieldset>
+			<div id = "cart" style="padding:15px">
+			
+		</div></fieldset>
+		<button onclick="fun()">CALCULATE</button><br>
+		<fieldset><div style="padding:15px">
+			Total Price is <p id="price"></p>
+		</div></fieldset>
+		<a href="q.html">Pay Now</a>
+	</body>
+	<style>
+         body
+            {
+                font-family: Arial, Helvetica, serif;
+                font-style: italic;
+                 background-image: url("1.png");
+                 font-size: 15px;
+            }
+          button
+          {
+          	background-color: lightblue;
+          	font-family: Arial, Helvetica, serif;
+                font-style: italic;
+
+
+          }
+      </style>
+	<script src="script.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var local=JSON.parse(localStorage.getItem("1"));
+if(local)
+{
+	for(var i=0;i<local.length;i++)
+	{
+		addProducttocartDOM(local[i]);
+		cartproductsId=i+1;
+	}
+	cartproducts=local;
+	cartproductsId=cartproductsId+1;
+}
+	</script>
+	</html>

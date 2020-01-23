@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+
+  font-size: 17px;
+  padding: 8px;
+  margin-left: 80px;
+  font-family: Arial, Helvetica, serif;
+                font-style: italic;
+                 background-image: url("1.png");
+}
+
+* {
+  box-sizing: border-box; 
+}
+
+.row {
+    margin: 0 -16px;
+  width:75%;
+  text-align: center;
+  margin-left:120px 
+
+}
+
+.container {
+  background-color:lightblue;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  border : 2px solid #3498db;
+  border-radius: 20px;
+    background-color: #191919;
+  color :white;
+}
+input[type=text]:focus {
+width:50%;
+border-color: #2ecc71;
+}
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 30%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+  margin-left: 390px;
+   border : 2px solid #3498db;
+  border-radius: 20px;
+    background-color: #191919;
+    text-align: center;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+button {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+
+</style>
+<script src="script.js" type="text/javascript"></script>
+<script type="text/javascript">
+	   var price1=parseInt(localStorage.getItem("2"));
+
+     function formValidator(){
+  // Make quick references to our fields
+  var firstname = document.getElementById('cname');
+  var ccnum = document.getElementById('ccnum');
+  var expmonth = document.getElementById('expmonth');
+  var expyear = document.getElementById('expyear');
+  var cvv = document.getElementById('cvv');
+
+  
+  // Check each input in the order that it appears in the form!
+  if(isAlphabet(firstname, "Please enter only letters for your name")){
+    if(isCredit(ccnum, "Please enter a valid card number")){
+      if(isMonth(expmonth, "Please enter a valid Month")){
+          if(isYear(expyear, "Please enter a valid Year")){
+            if(isCVV(cvv, "Please enter a valid Cvv")){{
+              alert("Payment Successfully. Rs  "+price1+" debited from your account");
+              return true;
+            }
+          }
+        }
+    }
+  }
+  }
+  
+  return false;
+}
+
+function isAlphabet(elem, helperMsg){
+  var alphaExp = /^[a-zA-Z ]+$/;
+  if(elem.value.match(alphaExp)){
+    return true;
+  }else{
+    alert(helperMsg);
+    elem.focus();
+    return false;
+  }
+}
+
+function isCredit(elem, helperMsg){
+  var numericExpression = /^[0-9]+$/;
+  if(elem.value.match(numericExpression) && elem.value.length==16){
+    return true;
+  }else{
+    alert(helperMsg);
+    elem.focus();
+    return false;
+  }
+}
+
+function isMonth(elem, helperMsg){
+  var numericExpression = /^[0-9]+$/;
+  if(elem.value.match(numericExpression) && elem.value>=1 && elem.value<=12){
+    return true;
+  }else{
+    alert(helperMsg);
+    elem.focus();
+    return false;
+  }
+}
+function isYear(elem, helperMsg){
+  var numericExpression = /^[0-9]+$/;
+  if(elem.value.match(numericExpression) && elem.value >=2019){
+    return true;
+  }else{
+    alert(helperMsg);
+    elem.focus();
+    return false;
+  }
+}
+function isCVV(elem, helperMsg){
+  var numericExpression = /^[0-9]+$/;
+  if(elem.value.match(numericExpression) && elem.value>=100 && elem.value<=999){
+    return true;
+  }else{
+    alert(helperMsg);
+    elem.focus();
+    return false;
+  }
+}
+
+
+</script>
+</head>
+<body>
+
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form onsubmit='return formValidator()'>
+
+          <div class="col-75" >
+            <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+            <label for="cname">Name on Card</label>
+            <input type="text" id="cname" name="cardname">
+            <label for="ccnum">Credit card number</label>
+            <input type="text" id="ccnum" name="cardnumber" >
+            <label for="expmonth">Exp Month</label>
+            <input type="text" id="expmonth" name="expmonth">
+                <label for="expyear">Exp Year</label>
+                <input type="text" id="expyear" name="expyear">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" maxlength="3">
+              </div>
+
+  <pre><button type="submit" class="btn">Pay</button>                                                                                                   
+           </pre>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
